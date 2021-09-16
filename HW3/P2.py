@@ -1,4 +1,2 @@
 def P2(L: list) -> bool:
-    ### Modify code here ###
-    
-    ### End of your code ###
+    return L[0] == L[-1]
