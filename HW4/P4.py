@@ -1,6 +1,5 @@
+import operator
+
+
 def P4(dct: dict) -> str:
-    ### Write code here ###
-
-    ### End of your code ###  
-
-    return
+    return max(dct.items(), key=operator.itemgetter(1))[0]

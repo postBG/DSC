@@ -1,6 +1,9 @@
+from collections import defaultdict
+
+
 def P1(lst: list) -> set:
-    ### Write code here ###
+    counts = defaultdict(int)
+    for e in lst:
+        counts[e] += 1
 
-    ### End of your code ###  
-
-    return
+    return {number for number, count in counts.items() if 1 < count}
