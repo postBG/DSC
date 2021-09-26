@@ -1,5 +1,3 @@
-def P3(filename: str) -> list:        
-    ##### Write your Code Here #####
-
-    return list()
-    ##### End of your code #####
+def P3(filename: str) -> list:
+    with open(filename, 'r') as f:
+        return [l for l in reversed(f.readlines())]
