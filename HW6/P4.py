@@ -9,17 +9,11 @@ class Calculator:
         self._current_digits_buffer.append(str(num))
 
     def plus(self):
-        if len(self._current_digits_buffer) == 0:
-            self._recent_operator = '+'
-            return
         number = self._digit_buffer_to_digits_and_clear_buffer()
         self._do_calculation(number)
         self._recent_operator = '+'
 
     def minus(self):
-        if len(self._current_digits_buffer) == 0:
-            self._recent_operator = '-'
-            return
         number = self._digit_buffer_to_digits_and_clear_buffer()
         self._do_calculation(number)
         self._recent_operator = '-'
@@ -35,6 +29,9 @@ class Calculator:
         return self._current_result
 
     def _digit_buffer_to_digits_and_clear_buffer(self):
+        if len(self._current_digits_buffer) == 0:
+            self._current_digits_buffer = []
+            return 0
         current_number = int(''.join(self._current_digits_buffer))
         self._current_digits_buffer = []
         return current_number
