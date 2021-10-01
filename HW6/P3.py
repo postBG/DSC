@@ -1,5 +1,5 @@
 class Point:
-    def __init__(self,x,y):
+    def __init__(self, x, y):
         """
         (Point, int, int)->NoneType
         >>> p=Point(1,3)
@@ -8,11 +8,12 @@ class Point:
         >>> p.y
         3
         """
-        self.x=x # x좌표
-        self.y=y # y좌표
+        self.x = x  # x좌표
+        self.y = y  # y좌표
+
 
 class LineSegment:
-    def __init__(self,point1,point2):
+    def __init__(self, point1, point2):
         """(LineSegment,Point,Point)->NoneType
         A new LineSegment connecting point1 to point2
         >>> p1=Point(1,3)
@@ -23,8 +24,8 @@ class LineSegment:
         >>> segment.endpoint==p2
         True
         """
-        self.startpoint=point1
-        self.endpoint=point2
+        self.startpoint = point1
+        self.endpoint = point2
 
     def slope(self):
         """
@@ -34,7 +35,6 @@ class LineSegment:
         0.5
         """
         # Write your code below
-        
 
     def length(self):
         """
@@ -44,5 +44,3 @@ class LineSegment:
         2.23606797749979
         """
         # Write your code below
-        
-
