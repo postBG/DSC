@@ -1,3 +1,6 @@
+import math
+
+
 class Point:
     def __init__(self, x, y):
         """
@@ -34,7 +37,9 @@ class LineSegment:
         >>> segment.slope()
         0.5
         """
-        # Write your code below
+        x_diff = self.endpoint.x - self.startpoint.x
+        y_diff = self.endpoint.y - self.startpoint.y
+        return y_diff / x_diff
 
     def length(self):
         """
@@ -44,3 +49,6 @@ class LineSegment:
         2.23606797749979
         """
         # Write your code below
+        x_diff = self.endpoint.x - self.startpoint.x
+        y_diff = self.endpoint.y - self.startpoint.y
+        return math.sqrt(math.pow(y_diff, 2) + math.pow(x_diff, 2))
