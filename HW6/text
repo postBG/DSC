@@ -18,7 +18,7 @@ c.digit(0)
 c.digit(1)
 c.digit(0)
 c.digit(0)
-out1 = c.equal()
+assert c.equal() == -200
 
 
 c = Calculator()
@@ -40,15 +40,15 @@ c.digit(5)
 c.minus()
 c.plus()
 c.digit(2)
-out2 = c.equal()
+assert c.equal() == 49
 
 
 c = Calculator()
 c.clear()
-out3 = c.equal()
+assert c.equal() == 0
 
 c = Calculator()
-out4 = c.equal()
+assert c.equal() == 0
 
 c = Calculator()
 c.clear()
@@ -70,13 +70,16 @@ c.digit(5)
 c.minus()
 c.plus()
 c.digit(2)
-print(c.equal())
-print(c.equal())
+assert c.equal() == 49
+assert c.equal() == 49
 c.clear()
-print(c.equal())
+assert c.equal() == 0
 
 
 c = Calculator()
+c.digit(0)
+c.digit(0)
 c.digit(5)
+c.digit(0)
 c.digit(2)
-print(c.equal())
+assert c.equal() == 502
