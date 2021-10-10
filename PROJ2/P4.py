@@ -1,15 +1,6 @@
 from linked_list_helper import ListNode
 
 
-def num_to_lst(num):
-    lst = []
-    curr = num
-    while curr:
-        lst.append(curr % 10)
-        curr = curr // 10
-    return list(reversed(lst))
-
-
 def l2n(lst: ListNode):
     total = 0
     runner = lst
