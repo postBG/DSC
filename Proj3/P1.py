@@ -6,19 +6,11 @@ Please see instruction document.
 from BST_Helper import *
 
 
-def dfs_search_node(root, x):
+def search_node(root, x):
     if root is None or root.val == x:
         return root
 
-    left_search = dfs_search_node(root.left, x)
-    if left_search is not None:
-        return left_search
-
-    right_search = dfs_search_node(root.right, x)
-    if right_search is not None:
-        return right_search
-
-    return None
+    return search_node(root.left, x) if x < root.val else search_node(root.right, x)
 
 
 def inner_sum_subtrees(target_node):
@@ -36,5 +28,5 @@ def sum_subtrees(target_node):
 
 
 def P1(root: TreeNode, x: int) -> int:
-    target_node = dfs_search_node(root, x)
+    target_node = search_node(root, x)
     return sum_subtrees(target_node)
