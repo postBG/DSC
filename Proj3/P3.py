@@ -3,7 +3,6 @@
 Please see instruction document.
 """
 from BST_Helper import *
-from collections import deque
 
 
 def is_leaf(node):
