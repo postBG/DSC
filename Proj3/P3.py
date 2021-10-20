@@ -6,71 +6,83 @@ from BST_Helper import *
 from collections import deque
 
 
-def inner_inorder_lst(root, lst):
+def is_leaf(node):
+    return node.left is None and node.right is None
+
+
+def min_node_with_parent_node(node, parent):
+    curr = node
+    while curr.left is not None:
+        parent = curr
+        curr = curr.left
+
+    return curr, parent
+
+
+def max_node_with_parent_node(node, parent):
+    curr = node
+    while curr.right is not None:
+        parent = curr
+        curr = curr.right
+
+    return curr, parent
+
+
+def bring_to_root_and_delete(root, node, parent):
+    if node is parent.left:
+        parent.left = None
+    if node is parent.right:
+        parent.right = None
+
+    root.val = node.val
+
+
+def count_node(root):
     if root is None:
-        return
-    inner_inorder_lst(root.left, lst)
-    lst.append(root.val)
-    inner_inorder_lst(root.right, lst)
+        return 0
+
+    if is_leaf(root):
+        return 1
+
+    return count_node(root.left) + count_node(root.right) + 1
 
 
-def inorder_lst(root):
-    lst = []
-    inner_inorder_lst(root, lst)
-    return lst
+def is_left_full(root):
+    left_child_num = count_node(root.left)
+    right_child_num = count_node(root.right)
+    return right_child_num < left_child_num
 
 
-def augment_inorder_lst(val, lst):
-    for i, v in enumerate(lst):
-        if val < v:
-            lst.insert(i, val)
-            return lst
-
-    lst.append(val)
-    return lst
-
-
-def has_only_one_child(node):
-    has_left = node.left is not None
-    has_right = node.right is not None
-    return (has_left and not has_right) or (not has_left and has_right)
-
-
-def find_one_child_parent(root):
-    if root is None or has_only_one_child(root):
-        return root
-
-    left_search = find_one_child_parent(root.left)
-    if left_search is not None:
-        return left_search
-
-    right_search = find_one_child_parent(root.right)
-    if right_search is not None:
-        return right_search
-
-
-def fill_up_empty_node(root):
-    one_child_parent = find_one_child_parent(root)
-
-    node = TreeNode(None)
-    if one_child_parent.left is None:
-        one_child_parent.left = node
+def insert_val_to_deficient_bst(val, bst_root, root_parent):
+    if bst_root is None:
+        if root_parent.left is None:
+            root_parent.left = TreeNode(val)
+            return
+        if root_parent.right is None:
+            root_parent.right = TreeNode(val)
+            return
+    if val < bst_root.val and is_left_full(bst_root):
+        insert_val_to_deficient_bst(bst_root.val, bst_root.right, bst_root)
+        left_max_node, left_max_node_parent = max_node_with_parent_node(bst_root.left, bst_root)
+        if left_max_node.val < val:
+            bst_root.val = val
+            return
+        bring_to_root_and_delete(bst_root, left_max_node, left_max_node_parent)
+        insert_val_to_deficient_bst(val, bst_root.left, bst_root)
+    elif val < bst_root.val and not is_left_full(bst_root):
+        insert_val_to_deficient_bst(val, bst_root.left, bst_root)
+    elif bst_root.val < val and not is_left_full(bst_root):
+        insert_val_to_deficient_bst(bst_root.val, bst_root.left, bst_root)
+        right_min_node, right_min_node_parent = min_node_with_parent_node(bst_root.right, bst_root)
+        if val < right_min_node.val:
+            bst_root.val = val
+            return
+        bring_to_root_and_delete(bst_root, right_min_node, right_min_node_parent)
+        insert_val_to_deficient_bst(val, bst_root.right, bst_root)
     else:
-        one_child_parent.right = node
-
-
-def reorder_nodes(root, queue):
-    if root is None or len(queue) == 0:
-        return
-
-    reorder_nodes(root.left, queue)
-    root.val = queue.popleft()
-    reorder_nodes(root.right, queue)
+        insert_val_to_deficient_bst(val, bst_root.right, bst_root)
 
 
 def P3(root: TreeNode, val: int) -> TreeNode:
-    lst = inorder_lst(root)
-    queue = deque(augment_inorder_lst(val, lst))
-    fill_up_empty_node(root)
-    reorder_nodes(root, queue)
+    insert_val_to_deficient_bst(val, root, None)
     return root
