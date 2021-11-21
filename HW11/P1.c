@@ -7,11 +7,15 @@
 
 void main(int argc, char* argv[]){
 	int input_int;
-	int ans = -1;
-	/* Please write your code below */
+    int ans = -1;
 
-	
-	/* Do not modify below */
+    printf("Enter any natural number:");
+    scanf("%d", &input_int);
+
+    if (input_int % 3 == 0)
+        ans = 1;
+    else
+        ans = 0;
 
 	printf("ans:%d\n", ans);
 }
