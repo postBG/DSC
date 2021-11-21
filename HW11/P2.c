@@ -7,9 +7,13 @@
 #include <stdio.h>
 
 void main(int argc, char* argv[]){
-	/* Please write your code below */
+	char c;
+    printf("Enter any alphabet:");
+    scanf("%c", &c);
 
-
-	/* Do not modify below */
+    int counter;
+    for (counter = c; counter >= 'A'; counter--){
+        printf("%c", counter);
+    }
 }
 
