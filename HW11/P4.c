@@ -6,9 +6,18 @@
 #include <stdlib.h>
 	
 int base_four(int n){
-/* Please write your code below */
+    int ans = 0;
+    int pos = 1;
 
-	return 0;
+    while(n >= 4){
+        int last = n % 4;
+        ans += pos * last;
+
+        n = n / 4;
+        pos = pos * 10;
+    }
+    ans += pos * n;
+	return ans;
 
 }
 /* Do not modify below */
