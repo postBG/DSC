@@ -6,6 +6,8 @@
 
 void print_unique_numbers(int *numbers, int n_integers);
 
+bool has(int *set, int size, int num);
+
 int main(int argc, char *argv[]) {
     if (argc == 1) {
         printf("Please input at least 1 integer.\n");
@@ -23,11 +25,23 @@ int main(int argc, char *argv[]) {
 
 /* Do not modify above*/
 
-void print_unique_numbers(int *numbers, int n_integers) {
-    /*
-    numbers: input integer array
-    n_integers: length of 'numbers'
-    */
-    /* Write your code here */
+bool has(int *set, int size, int num) {
+    for (int i = 0; i < size; i++) {
+        if (set[i] == num)
+            return true;
+    }
+    return false;
+}
 
+void print_unique_numbers(int *numbers, int n_integers) {
+    int set[n_integers];
+    int size = 0;
+
+    for (int i = 0; i < n_integers; i++) {
+        if (!has(set, size, numbers[i])) {
+            set[size] = numbers[i];
+            size++;
+            printf("%d ", numbers[i]);
+        }
+    }
 }
