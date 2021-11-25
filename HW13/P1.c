@@ -15,10 +15,11 @@ int main(int argc, char* argv[]){
   char *alphabet[] = {"ABC", "DEF", "GHI", "JKL"};  
 
   char a, b, c, d;
-    
-  /* Write your code here */	
 
-  /*do not modify below*/
+  a = alphabet[0][i];
+  b = alphabet[1][j];
+  c = alphabet[2][k];
+  d = alphabet[3][l];
 
   printf("%c%c%c%c\n", a,b,c,d);
   return 0;
