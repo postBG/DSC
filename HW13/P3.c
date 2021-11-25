@@ -27,9 +27,21 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-/* Do not modify above*/
-
 void InsertionSortReverse(char list[]) {
-    /* Write your code here */
+    int i, j;
+    for(i = 0; i < MAX_NUMS; i++) {
+        char max_c = list[i];
+        int max_idx = i;
+        for(j = i; j < MAX_NUMS; j++) {
+            if (max_c < list[j]) {
+                max_c = list[j];
+                max_idx = j;
+            }
 
+        }
+
+        char tmp = list[i];
+        list[i] = list[max_idx];
+        list[max_idx] = tmp;
+    }
 }
