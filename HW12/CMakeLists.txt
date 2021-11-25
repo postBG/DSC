@@ -4,4 +4,4 @@ project(HW12 C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(HW12
-        P2.c)
+        P4.c)
