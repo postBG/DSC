@@ -14,6 +14,21 @@ struct Node *createNode(struct Node *newNode, int data) {
     return newNode;
 }
 
+struct Node *reverse(struct Node *head) {
+    struct Node *curr = head;
+    struct Node *tmp = NULL;
+    struct Node *prev = NULL;
+
+    while (curr != NULL) {
+        tmp = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = tmp;
+    }
+
+    return prev;
+}
+
 
 int main(int argc, char *argv[]) {
     int length = argc - 1;
@@ -42,7 +57,7 @@ int main(int argc, char *argv[]) {
 
     /* Write your code here */
 
-
+    head = reverse(head);
 
 
     /* Do not modify below */
