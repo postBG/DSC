@@ -42,6 +42,38 @@ char pop(struct Stack *stack) {
     return stack->array[stack->top--];
 }
 
+int len(char *s) {
+    int l = 0;
+    while (s[l] != '\0') {
+        l += 1;
+    }
+    return l;
+}
+
+int is_success(struct Stack *stack, char *str) {
+    int l = len(str);
+
+    for (int i = 0; i < l; i++) {
+        char c = str[i];
+
+        if (c == '(' || c == '{' || c == '[') {
+            push(stack, c);
+            continue;
+        }
+
+        if (c == ')' && pop(stack) != '(')
+            return -1;
+
+        if (c == '}' && pop(stack) != '{')
+            return -1;
+
+        if (c == ']' && pop(stack) != '[')
+            return -1;
+    }
+
+    return isEmpty(stack) - 1;
+}
+
 int main(int argc, char *argv[]) {
 
     char *strInput = argv[1];
@@ -49,8 +81,8 @@ int main(int argc, char *argv[]) {
 
     /* Write your code here */
 
-
-
+    struct Stack *stack = createStack(len(strInput));
+    success = is_success(stack, strInput);
 
     /* Do not modify below */
     printf("%d", success);
