@@ -4,60 +4,59 @@
 /* Linked list node structure */
 struct Node {
     int data;
-    struct Node* next;
+    struct Node *next;
 };
 
 /* Create a new node */
-struct Node * createNode(struct Node * newNode, int data){
-  newNode = (struct Node *) malloc(sizeof(struct Node));
-  newNode->data = data;
-  return newNode;
+struct Node *createNode(struct Node *newNode, int data) {
+    newNode = (struct Node *) malloc(sizeof(struct Node));
+    newNode->data = data;
+    return newNode;
 }
 
 
-int main(int argc, char* argv[])
-{  
-  int length = argc - 1;
+int main(int argc, char *argv[]) {
+    int length = argc - 1;
 
-  /* Create a linked list from input integers */
-  int k = 1;
-  struct Node * head = NULL;
-  struct Node * prev = NULL;
-  struct Node * curr = NULL;
+    /* Create a linked list from input integers */
+    int k = 1;
+    struct Node *head = NULL;
+    struct Node *prev = NULL;
+    struct Node *curr = NULL;
 
-addNode:
-  curr = createNode(curr, atoi(argv[k]));  
-    
-  if (k > 1)
-    prev->next = curr;
-  else
-    head = curr;
+    addNode:
+    curr = createNode(curr, atoi(argv[k]));
 
-  k++;
-  prev = curr;
+    if (k > 1)
+        prev->next = curr;
+    else
+        head = curr;
 
-  if (k <= length)
-    goto addNode;
+    k++;
+    prev = curr;
 
-  curr->next = NULL;
+    if (k <= length)
+        goto addNode;
 
-  /* Write your code here */	
+    curr->next = NULL;
 
+    /* Write your code here */
 
 
 
-	/* Do not modify below */	
+
+    /* Do not modify below */
 
 
-  /* Pinrt reversed linked list */
-  curr = head;
- 
-  while (curr){
-    printf("%d", curr->data);
-    curr = curr->next;
-  }
+    /* Pinrt reversed linked list */
+    curr = head;
 
-  return 0;
+    while (curr) {
+        printf("%d", curr->data);
+        curr = curr->next;
+    }
+
+    return 0;
 
 
 }
